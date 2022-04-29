@@ -174,7 +174,7 @@ class TenantUserController extends ResourceController
         return $this->respondCreated($response);
     }
 
-    //Update the Enter Data of User Tenant....
+    //Update the  Data of User Tenant....
     public function update_tenant($id = null)
     {
         $rules = [
