@@ -38,6 +38,8 @@ $routes->post('/registration','RegistrationController::user_register');
 
 $routes->post('/login','RegistrationController::user_login');
 /////////////
+
+
 //The New TenantUserController //
 //Register New Tenat User..
 $routes->post('/create','TenantUserController::create_tenant');
@@ -49,6 +51,27 @@ $routes->get('/findall','TenantUserController::view_Tenant');
 $routes->put('/update/(:num)','TenantUserController::update_tenant/$1'); 
 //Tenant View Single record View...
 $routes->get('/view/(:num)','TenantUserController::Tenant_single/$1');
+////////////////////////////////////////End Of TenantController
+
+//The New Upgrade User Controller Route....
+
+//this route create new payement plan of the user...
+$routes->post('/create_plan','UpgradeUserController::create_upgradeplan');
+
+//This route delete the plan of the user..
+$routes->delete('/delete_plan','UpgradeUserController::Delete_upgradeplan');
+
+// This route show single view of plan...
+$routes->get('/single_plan','UpgradeUserController::Upgradeplan_single');
+
+// This route show all view of plan...
+$routes->get('/all_plan','UpgradeUserController::Upgradeplan_all');
+
+// This route update all data of plan...
+$routes->put('/update_plan','UpgradeUserController::UpgradePlan_Update');
+
+
+//
 
 /*
  * --------------------------------------------------------------------

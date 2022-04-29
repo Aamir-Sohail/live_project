@@ -10,8 +10,6 @@ use Exception;
 use Config\Services;
 use App\Models\TenantModel;
 
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
-use \Firebase\JWT\JWT;
 
 class TenantUserController extends ResourceController
 {
