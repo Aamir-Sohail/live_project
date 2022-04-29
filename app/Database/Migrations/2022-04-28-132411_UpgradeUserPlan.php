@@ -14,7 +14,7 @@ class UpgradeUserPlan extends Migration
             'user_id'      => ['type' => 'INT', 'constraint' => 8],
             'amount'      => ['type' => 'INT', 'constraint' => 31],
             'recived_by'      => ['type' => 'varchar', 'constraint' => 31],
-            'payment_date'      => ['type' => 'INT', 'constraint' => 31],
+            'payment_date'      => ['type' => 'varchar', 'constraint' => 31],
            // cheque
             'image'      => ['type' => 'varchar', 'constraint' => 31],
             'Cheque_amount'      => ['type' => 'varchar', 'constraint' => 31],

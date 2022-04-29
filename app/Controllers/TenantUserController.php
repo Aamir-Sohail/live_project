@@ -9,6 +9,7 @@ use CodeIgniter\API\ResponseTrait;
 use Exception;
 use Config\Services;
 use App\Models\TenantModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 
 class TenantUserController extends ResourceController
@@ -216,6 +217,9 @@ class TenantUserController extends ResourceController
                     'Message' => 'Tenant User Successfully Update',
                 ];
             } else {
+                if (!$id) {
+                    throw PageNotFoundException::forPageNotFound('User Not Found');
+                }
                 $response = [
                     'message' => 'No Tenant User Found',
                 ];

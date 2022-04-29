@@ -6,11 +6,9 @@ use App\Controllers\BaseController;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use Exception;
-use Config\Services;
-use App\Models\TenantModel;
 use App\Models\UpgradeUserModel;
 use phpDocumentor\Reflection\Types\Null_;
-
+use CodeIgniter\Exceptions\PageNotFoundException;
 class UpgradeUserController extends ResourceController
 {
     use ResponseTrait;
@@ -23,7 +21,8 @@ class UpgradeUserController extends ResourceController
     }
     public function index()
     {
-        //
+    
+       
     }
 // This Function is Create New Upgrade Plan....
     public function create_upgradeplan()
@@ -195,6 +194,7 @@ class UpgradeUserController extends ResourceController
 
         // var_dump($this->request->getJSON());
         // die;
+        
         if (!$this->validate($rules)) {
             $response = [
                 'message' => $this->validator->getError(),
@@ -227,7 +227,11 @@ class UpgradeUserController extends ResourceController
                     'Message' => ' Upgrade Plan Successfully Update',
                 ];
             } else {
+                if (!$id) {
+                    throw PageNotFoundException::forPageNotFound('User Not Found');
+                }
                 $response = [
+                    
                     'message' => 'No Upgrade Plan Found',
                 ];
             }

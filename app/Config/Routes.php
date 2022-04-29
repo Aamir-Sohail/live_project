@@ -51,7 +51,7 @@ $routes->get('/findall','TenantUserController::view_Tenant');
 $routes->put('/update/(:num)','TenantUserController::update_tenant/$1'); 
 //Tenant View Single record View...
 $routes->get('/view/(:num)','TenantUserController::Tenant_single/$1');
-////////////////////////////////////////End Of TenantController
+//......End Of TenantController
 
 //The New Upgrade User Controller Route....
 
@@ -59,16 +59,16 @@ $routes->get('/view/(:num)','TenantUserController::Tenant_single/$1');
 $routes->post('/create_plan','UpgradeUserController::create_upgradeplan');
 
 //This route delete the plan of the user..
-$routes->delete('/delete_plan','UpgradeUserController::Delete_upgradeplan');
+$routes->delete('/delete_plan/(:num)','UpgradeUserController::Delete_upgradeplan/$1');
 
 // This route show single view of plan...
-$routes->get('/single_plan','UpgradeUserController::Upgradeplan_single');
+$routes->get('/single_plan/(:num)','UpgradeUserController::Upgradeplan_single/$1');
 
 // This route show all view of plan...
 $routes->get('/all_plan','UpgradeUserController::Upgradeplan_all');
 
 // This route update all data of plan...
-$routes->put('/update_plan','UpgradeUserController::UpgradePlan_Update');
+$routes->put('/update_plan/(:num)','UpgradeUserController::UpgradePlan_Update/$1');
 
 
 //
