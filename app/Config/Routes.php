@@ -53,6 +53,8 @@ $routes->put('/update/(:num)','TenantUserController::update_tenant/$1');
 $routes->get('/view/(:num)','TenantUserController::Tenant_single/$1');
 //......End Of TenantController
 
+
+
 //The New Upgrade User Controller Route....
 
 //this route create new payement plan of the user...
@@ -69,7 +71,7 @@ $routes->get('/all_plan','UpgradeUserController::Upgradeplan_all');
 
 // This route update all data of plan...
 $routes->put('/update_plan/(:num)','UpgradeUserController::UpgradePlan_Update/$1');
-
+// End The Routes of The Upgrade plan....
 
 //
 
