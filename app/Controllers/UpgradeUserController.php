@@ -9,6 +9,7 @@ use Exception;
 use App\Models\UpgradeUserModel;
 use phpDocumentor\Reflection\Types\Null_;
 use CodeIgniter\Exceptions\PageNotFoundException;
+
 class UpgradeUserController extends ResourceController
 {
     use ResponseTrait;
@@ -21,10 +22,8 @@ class UpgradeUserController extends ResourceController
     }
     public function index()
     {
-    
-       
     }
-// This Function is Create New Upgrade Plan....
+    // This Function is Create New Upgrade Plan....
     public function create_upgradeplan()
     {
         helper(['form']);
@@ -35,14 +34,18 @@ class UpgradeUserController extends ResourceController
             'recived_by' => 'required',
             'payment_date' => 'required',
             //Cheque Information..
-            'image' => 'required',
+            'image' => 'required|uploaded[image]|
+            mime_in[file, image/png, image/jpg, image/jpeg]|
+            max_size[image,4096]',
             'Cheque_amount' => 'required',
             'payee_name' => 'required',
             'bank_name' => 'required',
             'recived_cheque' => 'required',
             'cheque_date' => 'required',
             //Bank Transfer Infromation
-            'image_transfer' => 'required',
+            'image_transfer' => 'required|uploaded[image_transfer|
+            mime_in[file, image/png, image/jpg, image/jpeg]|
+            max_size[file,4096]',
             'from_account_number' => 'required',
             'to_account_number' => 'required',
             'amount_transfer' => 'required',
@@ -88,6 +91,7 @@ class UpgradeUserController extends ResourceController
 
 
         // };
+            
         $data = [
             //cash
             'amount' => $this->request->getVar('amount'),
@@ -95,6 +99,7 @@ class UpgradeUserController extends ResourceController
             'payment_date'  => $this->request->getVar('payment_date'),
             //cheque
             'image' => $this->request->getFile('image'),
+
             'Cheque_amount'  => $this->request->getVar('Cheque_amount'),
             'payee_name'  => $this->request->getVar('payee_name'),
             'bank_name'  => $this->request->getVar('bank_name'),
@@ -117,8 +122,8 @@ class UpgradeUserController extends ResourceController
         $savedata = $upgradeusermodel->save($data);
         $this->respondCreated($savedata);
     }
-
-// This Function is delete upgradeplan......
+ 
+    // This Function is delete upgradeplan......
     public function Delete_upgradeplan($id = null)
 
     {
@@ -139,7 +144,7 @@ class UpgradeUserController extends ResourceController
     {
         $upgradeusermodel = new UpgradeUserModel();
 
-        $data =  $upgradeusermodel ->find($id);
+        $data =  $upgradeusermodel->find($id);
         if (!empty($data)) {
             $response = [
                 'Message' => 'Single Data of Upgrade Plan',
@@ -151,7 +156,7 @@ class UpgradeUserController extends ResourceController
             ];
         }
         return $this->respondCreated($response);
-    } 
+    }
 
     //This Function is Show all the Upgrade plan....
     public function Upgradeplan_all()
@@ -171,22 +176,28 @@ class UpgradeUserController extends ResourceController
             //cash
             'amount' => 'required',
             'received_by' => 'required',
-            'payment_date' => 'required|valid_email',
+            'payment_date' => 'required',
             // cheque
-            'image' =>'required',
+            'image' => 'required|uploaded[image]|
+            mime_in[file, image/png, image/jpg, image/jpeg]|
+            max_size[image,4096]',
+
             'Cheque_amount' => 'required',
             'payee_name' => 'required',
             'bank_name' => 'required',
             'received_cheque' => 'required',
             'cheque_date' => 'required',
             //Bank Information
-            'image_transfer' => 'required',
+            'image_transfer' => 'required|uploaded[image_transfer|
+            mime_in[file, image/png, image/jpg, image/jpeg]|
+            max_size[file,4096]',
+
             'form_account_number' => 'required',
             'to_account_number' => 'required',
             'name_bank' => 'required',
             'payment_transfer' => 'required',
             'received_name' => 'required',
-           
+
             'plan_name' => 'required',
             'billing_type' => 'required',
 
@@ -194,7 +205,7 @@ class UpgradeUserController extends ResourceController
 
         // var_dump($this->request->getJSON());
         // die;
-        
+
         if (!$this->validate($rules)) {
             $response = [
                 'message' => $this->validator->getError(),
@@ -207,6 +218,7 @@ class UpgradeUserController extends ResourceController
                 $data['payment_date'] = $this->request->getVar("payment_date");
                 //
                 $data['image'] = $this->request->getFile("image");
+              
                 $data['Cheque_amount'] = $this->request->getVar("Cheque_amount");
                 $data['payee_name'] = $this->request->getVar("payee_name");
                 $data['bank_name'] = $this->request->getVar("bank_name");
@@ -231,13 +243,11 @@ class UpgradeUserController extends ResourceController
                     throw PageNotFoundException::forPageNotFound('User Not Found');
                 }
                 $response = [
-                    
+
                     'message' => 'No Upgrade Plan Found',
                 ];
             }
         }
         return $this->respondCreated($response);
     }
-
-
 }
